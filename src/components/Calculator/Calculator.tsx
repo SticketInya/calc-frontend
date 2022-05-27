@@ -15,12 +15,25 @@ export default function Calculator() {
         setNumbers(numbers + String(digit));
     };
 
+    const addOperator = (operator: string) => {
+        const lastDigit = numbers.slice(-1);
+        if (operators.includes(lastDigit)) {
+            return;
+        }
+        setNumbers(numbers + operator);
+    };
+
     return (
         <div className='Calculator'>
             <div className='Display'>{numbers === '' ? '0' : numbers}</div>
             <div className='Operators'>
                 {operators.map((operator) => (
-                    <button key={operator}>{operator}</button>
+                    <button
+                        key={operator}
+                        onClick={() => addOperator(operator)}
+                    >
+                        {operator}
+                    </button>
                 ))}
             </div>
             <div className='Digits'>{digitBtns}</div>
