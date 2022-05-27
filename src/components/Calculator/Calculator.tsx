@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { useState } from 'react';
+import { operators } from '../../constants/operators';
 
 export default function Calculator() {
     const [numbers, setNumbers] = useState('');
     const [savedNumId, setSavedNumId] = useState('');
-    const operators = ['+', '-', '/', '*', '.'];
+
     const digitBtns = Array.from({ length: 10 }).map((_, i) => {
         return (
             <button key={i} onClick={() => addDigit(i)}>
