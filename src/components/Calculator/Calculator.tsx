@@ -32,6 +32,13 @@ export default function Calculator() {
         }
     };
 
+    const deleteLastDigit = () => {
+        if (numbers.length === 0) {
+            return;
+        }
+        setNumbers(numbers.slice(0, -1));
+    };
+
     return (
         <div className='Calculator'>
             <div className='Display'>{numbers === '' ? '0' : numbers}</div>
@@ -48,7 +55,7 @@ export default function Calculator() {
             <div className='Digits'>{digitBtns}</div>
             <div className='FunctionalBtns'>
                 <button onClick={evalNumbers}>=</button>
-                <button>Del</button>
+                <button onClick={deleteLastDigit}>Del</button>
                 <button>Save</button>
                 <button>Read</button>
             </div>
