@@ -60,6 +60,21 @@ export default function Calculator() {
         }
     };
 
+    const readSavedNumber = async () => {
+        if (savedNumId === '') {
+            return;
+        }
+        try {
+            await axios
+                .get(`${process.env.REACT_APP_API_URL}/${savedNumId}`)
+                .then((res) => {
+                    setNumbers(String(res.data.number));
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className='Calculator'>
             <div className='Display'>{numbers === '' ? '0' : numbers}</div>
@@ -78,7 +93,7 @@ export default function Calculator() {
                 <button onClick={evalNumbers}>=</button>
                 <button onClick={deleteLastDigit}>Del</button>
                 <button onClick={saveCurrentNumber}>Save</button>
-                <button>Read</button>
+                <button onClick={readSavedNumber}>Read</button>
             </div>
         </div>
     );
