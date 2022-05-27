@@ -42,6 +42,10 @@ export default function Calculator() {
         setNumbers(numbers.slice(0, -1));
     };
 
+    const clearNumbers = () => {
+        setNumbers('');
+    };
+
     const saveCurrentNumber = async () => {
         if (numbers.length === 0) {
             return;
@@ -93,6 +97,7 @@ export default function Calculator() {
             <div className='FunctionalBtns'>
                 <button onClick={evalNumbers}>=</button>
                 <button onClick={deleteLastDigit}>Del</button>
+                <button onClick={clearNumbers}>Clear</button>
                 <button onClick={saveCurrentNumber}>Save</button>
                 <button onClick={readSavedNumber}>Read</button>
             </div>
