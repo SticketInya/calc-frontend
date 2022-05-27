@@ -1,0 +1,52 @@
+.root{
+    background-color: #222222;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 15px 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.display{
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: end;
+    padding: 1.2rem;
+    color: whitesmoke;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+}
+
+.digit{
+    border: 0;
+    background-color: #444444;
+    color: white;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.digit:hover{
+    background-color: #333333;
+}
+
+.funcBtns{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+}
+
+.funcBtns>button{
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.75rem;
+
+    border: 0;
+    background-color: blueviolet;
+    color: aliceblue;
+}
+
+.funcBtns>button:hover{
+    background-color: purple;
+}

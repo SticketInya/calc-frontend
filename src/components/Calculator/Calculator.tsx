@@ -2,13 +2,19 @@ import axios from 'axios';
 import { useState } from 'react';
 import { operators } from '../../constants/operators';
 
+import styles from './Calculator.module.css';
+
 export default function Calculator() {
     const [numbers, setNumbers] = useState('');
     const [savedNumId, setSavedNumId] = useState('');
 
     const digitBtns = Array.from({ length: 10 }).map((_, i) => {
         return (
-            <button key={i} onClick={() => addDigit(i)}>
+            <button
+                className={styles.digit}
+                key={i}
+                onClick={() => addDigit(i)}
+            >
                 {i}
             </button>
         );
@@ -81,11 +87,15 @@ export default function Calculator() {
     };
 
     return (
-        <div className='Calculator'>
-            <div className='Display'>{numbers === '' ? '0' : numbers}</div>
-            <div className='Operators'>
+        <div className={styles.root}>
+            <div className={styles.display}>
+                {numbers === '' ? '0' : numbers}
+            </div>
+            <div className={styles.container}>
+                {digitBtns}
                 {operators.map((operator) => (
                     <button
+                        className={styles.digit}
                         key={operator}
                         onClick={() => addOperator(operator)}
                     >
@@ -93,8 +103,7 @@ export default function Calculator() {
                     </button>
                 ))}
             </div>
-            <div className='Digits'>{digitBtns}</div>
-            <div className='FunctionalBtns'>
+            <div className={styles.funcBtns}>
                 <button onClick={evalNumbers}>=</button>
                 <button onClick={deleteLastDigit}>Del</button>
                 <button onClick={clearNumbers}>Clear</button>
