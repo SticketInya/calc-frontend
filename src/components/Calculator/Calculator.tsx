@@ -23,6 +23,15 @@ export default function Calculator() {
         setNumbers(numbers + operator);
     };
 
+    const evalNumbers = () => {
+        try {
+            const result = eval(numbers);
+            setNumbers(String(result));
+        } catch (err) {
+            setNumbers('Error');
+        }
+    };
+
     return (
         <div className='Calculator'>
             <div className='Display'>{numbers === '' ? '0' : numbers}</div>
@@ -38,7 +47,7 @@ export default function Calculator() {
             </div>
             <div className='Digits'>{digitBtns}</div>
             <div className='FunctionalBtns'>
-                <button>=</button>
+                <button onClick={evalNumbers}>=</button>
                 <button>Del</button>
                 <button>Save</button>
                 <button>Read</button>
