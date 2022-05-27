@@ -1,7 +1,9 @@
+import axios from 'axios';
 import { useState } from 'react';
 
 export default function Calculator() {
     const [numbers, setNumbers] = useState('');
+    const [savedNumId, setSavedNumId] = useState('');
     const operators = ['+', '-', '/', '*', '.'];
     const digitBtns = Array.from({ length: 10 }).map((_, i) => {
         return (
@@ -39,6 +41,25 @@ export default function Calculator() {
         setNumbers(numbers.slice(0, -1));
     };
 
+    const saveCurrentNumber = async () => {
+        if (numbers.length === 0) {
+            return;
+        }
+        try {
+            const currNum = eval(numbers);
+            const dataToSend = {
+                impNumber: currNum,
+            };
+            await axios
+                .post(`${process.env.REACT_APP_API_URL}/save`, dataToSend)
+                .then((res) => {
+                    setSavedNumId(res.data.id);
+                });
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <div className='Calculator'>
             <div className='Display'>{numbers === '' ? '0' : numbers}</div>
@@ -56,7 +77,7 @@ export default function Calculator() {
             <div className='FunctionalBtns'>
                 <button onClick={evalNumbers}>=</button>
                 <button onClick={deleteLastDigit}>Del</button>
-                <button>Save</button>
+                <button onClick={saveCurrentNumber}>Save</button>
                 <button>Read</button>
             </div>
         </div>
