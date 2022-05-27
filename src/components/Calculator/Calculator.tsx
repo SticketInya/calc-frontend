@@ -4,8 +4,16 @@ export default function Calculator() {
     const [numbers, setNumbers] = useState('');
     const operators = ['+', '-', '/', '*', '.'];
     const digitBtns = Array.from({ length: 10 }).map((_, i) => {
-        return <button key={i}>{i}</button>;
+        return (
+            <button key={i} onClick={() => addDigit(i)}>
+                {i}
+            </button>
+        );
     });
+
+    const addDigit = (digit: number) => {
+        setNumbers(numbers + String(digit));
+    };
 
     return (
         <div className='Calculator'>
